@@ -1,18 +1,23 @@
-                    // Na maioria das vezes quando importamos um framework, será sinalizado com "...framework", que dentro desse framework existe as tipagem dela, só que não esta literalmente dentro da propria framework, pois como padrao para algumas frameworks, criar uma sub framework a parte com suas tipagem. geralmente ficam em @type/framework
+//importando modulos
+import "reflect-metadata";
 import express from "express";
+import {Request,Response} from "express";
+import { router } from "./routes";
+
+import "./database";
 
 //realizando chamada da função express 
 const app = express();
 
-app.get(`/test`, (response, request)=>{
+//possibilitando que o servidor receba tipos de dados json e urlencoded
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
 
-    request.send(`ola nlw`);
-});
+//inserindo todas as routes dentro do server app
+app.use(router);
 
-app.post(`/test-post`, (response, request)=>{
+//tratando erros externos da aplicação
 
-    request.send(`testando post que não e possviel no browser acessa essa rota diretamente`);
-});
 
 //iniciando servidor na port 3000
 app.listen(3000,()=>{

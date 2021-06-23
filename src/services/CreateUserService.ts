@@ -13,12 +13,11 @@ class CreateUserService{
     //função sicrona para realizar consultas demoradas
     async execute({name,email,admin}: IUserRequest){
         
-        console.log(`email ${email}`)
         //instanciando repository da entidade Users para realizar a manipulação do banco
         const usersRepositories = getCustomRepository(UsersRepositories);
 
         if(!email){
-            throw Error(`Email incorreto`);
+            throw new Error(`Email incorreto`);
         }
         
         const userAlreadyExists = await usersRepositories.findOne({

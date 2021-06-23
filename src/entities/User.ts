@@ -1,6 +1,7 @@
-
+//realizando o import para sinalizar a class como uma entity e as colunas da tabela
 import {Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn} from "typeorm";
 
+// importando framework para gerar chaves dos id
 import { v4 as uuid} from "uuid";
 
 //referenciado qual tabela essa entidade irá manipular

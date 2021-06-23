@@ -1,7 +1,9 @@
 //importando modulos
 import "reflect-metadata";
-import express from "express";
-import {Request,Response} from "express";
+import express, {Request, Response, NextFunction} from "express";
+
+//framework para capturar errors de funções async
+import "express-async-errors";
 import { router } from "./routes";
 
 import "./database";
@@ -17,7 +19,18 @@ app.use(express.urlencoded({extended:true}));
 app.use(router);
 
 //tratando erros externos da aplicação
+app.use((err:Error, request: Request, response: Response, next: NextFunction)=>{
 
+    if(err instanceof Error){
+        console.log(err)
+        return response.status(400).json({
+            error:err.message
+        });
+    }
+
+    return response.status(500).json({status:"error",error: "Error no servidor"});
+    
+})
 
 //iniciando servidor na port 3000
 app.listen(3000,()=>{

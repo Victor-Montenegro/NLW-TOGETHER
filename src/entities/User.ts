@@ -1,4 +1,5 @@
 //realizando o import para sinalizar a class como uma entity e as colunas da tabela
+import { Exclude } from "class-transformer";
 import {Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn} from "typeorm";
 
 // importando framework para gerar chaves dos id
@@ -20,7 +21,8 @@ class User {
 
     @Column()
     admin:boolean;
-
+    
+    @Exclude()
     @Column()
     password: string;
 

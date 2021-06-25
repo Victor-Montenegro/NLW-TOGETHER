@@ -37,8 +37,7 @@ class CreateUserService{
 
         // criptografando password 
         const passwordHash = await hash(password, 8);
-
-
+        
         //devemos criar o tipo user antes de cadastrar o usuario dentro do banco
         const user = usersRepositories.create({
             name,
@@ -46,7 +45,7 @@ class CreateUserService{
             admin,
             password: passwordHash,
         });
-        
+
         //inserindo usuario no banco
         await usersRepositories.save(user);
 

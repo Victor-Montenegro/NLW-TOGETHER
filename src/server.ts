@@ -2,6 +2,9 @@
 import "reflect-metadata";
 import express, {Request, Response, NextFunction} from "express";
 
+//framework que habilida a sua API seja consumida por clientes
+import cors from "cors";
+
 //framework para capturar errors de funções async
 import "express-async-errors";
 import { router } from "./routes";
@@ -14,6 +17,9 @@ const app = express();
 //possibilitando que o servidor receba tipos de dados json e urlencoded
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
+
+//possibilitando que a API seja consumida por clientes
+app.use(cors());
 
 //inserindo todas as routes dentro do server app
 app.use(router);

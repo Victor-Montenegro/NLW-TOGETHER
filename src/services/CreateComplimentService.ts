@@ -20,6 +20,10 @@ class CreateComplimentService{
             throw new Error(`Usuario incorreto!`);
         }
 
+        if(!tag_id){
+            throw new Error(`Tag incorreta!`);
+        }
+
         if(user_receiver == user_sender){
             throw new Error(`User receiver incorret`);
         }
